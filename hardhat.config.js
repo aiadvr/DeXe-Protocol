@@ -39,6 +39,12 @@ module.exports = {
   networks: {
     hardhat: {
       initialDate: "1970-01-01T00:00:00Z",
+      forking: process.env.BSC_FORK
+        ? {
+            url: process.env.BSC_RPC_URL || "https://bsc-dataseed.binance.org/",
+            blockNumber: process.env.BSC_FORK_BLOCK ? parseInt(process.env.BSC_FORK_BLOCK) : undefined,
+          }
+        : undefined,
     },
     localhost: {
       url: "http://127.0.0.1:8545",
